@@ -17,10 +17,14 @@
     export let hours;
     export let minutes;
     export let priority;
+    export let status;
 
     let users_id = [1,2,3,4];
+    let diaries_id = [];
+    let diary_type = 'dated';
 
     let isExpanded = false;
+    let selectDiary = false;
     $: tempName = name;
     $: tempDesc = desc;
 
@@ -126,6 +130,23 @@ function moveToFirst(arr, index) {
     }
 }
 
+function checkStatus(){
+  if(status == 'archived'){
+    selectDiary = true;
+    showDiaries();
+  }
+}
+
+function showDiaries(){
+  diaries_id = [12, 13, 15, 11];
+}
+
+function showIsDatedDiary(diary_type){
+  if(diary_type == 'dated'){
+    need_date = true;
+  }
+}
+checkStatus();
 </script>
 <style>
     .ItemForm{
@@ -219,15 +240,12 @@ function moveToFirst(arr, index) {
 
     .header { grid-area: header; font-size: 22; font-weight: 600; padding-bottom: 10px;}
 
-.text {  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "name name name"
-    "desc desc desc"
-    "desc desc desc";
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
   grid-area: text;
 }
 
@@ -235,6 +253,8 @@ function moveToFirst(arr, index) {
     font-weight: 500;
     grid-area: name;
     align-items: flex-start;
+    width: 100%;
+    height: fit-content;
     padding: 6px; border-radius: 8px;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
 }
@@ -242,16 +262,19 @@ function moveToFirst(arr, index) {
 .desc { 
     grid-area: desc;
     align-items: flex-start;
+    width: 100%;
+    height: fit-content;
     padding: 6px; border-radius: 8px;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
  }
 
 .prop {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
+    "diary diary diary"
     "date time priority"
     "date time priority"
     "date time priority";
@@ -262,7 +285,13 @@ function moveToFirst(arr, index) {
   display: flex; 
   height: 60px;
 }
-
+.diary{
+  border: 1px solid black;
+  grid-area: diary;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
 .date { grid-area: date;  align-items: center; position: relative; }
 
 .time { grid-area: time; align-items: center; position: relative;
@@ -311,15 +340,28 @@ function moveToFirst(arr, index) {
     </div>
     <div class="header"><p>{header}</p></div>
     <div class="text">
+      <p>Заголовок</p>
       <div class="name" contenteditable="true"
       bind:innerHTML={tempName}
       on:input={e => tempName = e.target.innerHTML} placeholder="Введите имя"></div>
+      <p>Описание</p>
       <div class="desc"       contenteditable="true"
       bind:innerHTML={tempDesc}
       on:input={e => tempDesc = e.target.innerHTML}
       placeholder="Введите описание"></div>
     </div>
     <div class="prop">
+      <div class='diary'>
+        {#if selectDiary}
+        <p>Select diary</p>
+        <select class='diary_select'>
+          {#each diaries_id as diaryID}
+            <option value={diaryID} on:click={showIsDatedDiary(diaryID)}>'diaryID.name'</option>
+          {/each}
+        </select>
+        {/if}
+
+      </div>
       <div class="date">
         <IconButton icon={calendar} onClick={openChooseDate}></IconButton>
         <p>{tempDate}</p>

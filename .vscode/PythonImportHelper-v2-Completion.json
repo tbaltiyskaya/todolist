@@ -1,0 +1,132 @@
+[
+    {
+        "label": "create_unic_name",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "UserService",
+        "kind": 6,
+        "importPath": "backend.app.services.user_crud",
+        "description": "backend.app.services.user_crud",
+        "peekOfCode": "class UserService:\n    @staticmethod\n    def create_user(username: str, email: str):\n        user = User(name=username, email=email)\n        db.session.add(user)\n        return user\n    @staticmethod\n    def find_user_by_username(username: str) -> User:\n        try:\n            user = User.query.filter_by(name=username).first()",
+        "detail": "backend.app.services.user_crud",
+        "documentation": {}
+    },
+    {
+        "label": "create_unic_name",
+        "kind": 2,
+        "importPath": "backend.app.services.utils",
+        "description": "backend.app.services.utils",
+        "peekOfCode": "def create_unic_name(username: str) -> str:\n    number_code = ''.join(random.choices('0123456789', k=6))\n    return f\"{username}#{number_code}\"",
+        "detail": "backend.app.services.utils",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "backend.app.app",
+        "description": "backend.app.app",
+        "peekOfCode": "def init_db():\n    with app.app_context():\n        db.init_app(app)\n        try:\n            db.session.execute('SELECT 1')\n            db.session.commit()\n            print(\"Подключение успешно!\")\n        except Exception as e:\n            print(f\"Ошибка подключения: {str(e)}\")\nif __name__ == '__main__':",
+        "detail": "backend.app.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.app.app",
+        "description": "backend.app.app",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = (\n    f'postgresql://{DB_CONFIG[\"user\"]}:{DB_CONFIG[\"password\"]}'\n    f'@{DB_CONFIG[\"host\"]}/{DB_CONFIG[\"database\"]}'\n)\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndef init_db():\n    with app.app_context():\n        db.init_app(app)\n        try:",
+        "detail": "backend.app.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_DATABASE_URI']",
+        "kind": 5,
+        "importPath": "backend.app.app",
+        "description": "backend.app.app",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = (\n    f'postgresql://{DB_CONFIG[\"user\"]}:{DB_CONFIG[\"password\"]}'\n    f'@{DB_CONFIG[\"host\"]}/{DB_CONFIG[\"database\"]}'\n)\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndef init_db():\n    with app.app_context():\n        db.init_app(app)\n        try:\n            db.session.execute('SELECT 1')",
+        "detail": "backend.app.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS']",
+        "kind": 5,
+        "importPath": "backend.app.app",
+        "description": "backend.app.app",
+        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndef init_db():\n    with app.app_context():\n        db.init_app(app)\n        try:\n            db.session.execute('SELECT 1')\n            db.session.commit()\n            print(\"Подключение успешно!\")\n        except Exception as e:\n            print(f\"Ошибка подключения: {str(e)}\")",
+        "detail": "backend.app.app",
+        "documentation": {}
+    },
+    {
+        "label": "DB_CONFIG",
+        "kind": 5,
+        "importPath": "backend.app.config",
+        "description": "backend.app.config",
+        "peekOfCode": "DB_CONFIG = {\n    'user': 'app_admin',\n    'password': '12345',\n    'host': 'localhost',\n    'database': 'todolist_db'\n}",
+        "detail": "backend.app.config",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "backend.app.database",
+        "description": "backend.app.database",
+        "peekOfCode": "db = SQLAlchemy()",
+        "detail": "backend.app.database",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "backend.app.models",
+        "description": "backend.app.models",
+        "peekOfCode": "class User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(80), unique=True, nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    def __repr__(self):\n        return f\"User('{self.name}', '{self.email}')\"",
+        "detail": "backend.app.models",
+        "documentation": {}
+    }
+]

@@ -26,6 +26,7 @@
     let minutes = '22';
     let priority = 'middle';
     let user = 1;
+    let status = 'archived';
 </script>
 
 <style>
@@ -106,7 +107,8 @@ date={date}
 hours={hours} 
 minutes ={minutes}
 priority = {priority}
-user = {user}>
+user = {user}
+status = {status}>
 </EditItem>
 {/if}
 
