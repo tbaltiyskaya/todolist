@@ -1,7 +1,7 @@
 #user_crud.py
-from app.database import db
-from app.models import User
-from app.services.utils import create_unic_name
+from db import database
+from db import models
+from services import utils
 
 
 class UserService:
@@ -15,11 +15,11 @@ class UserService:
         #return user
     
 
-    def find_user_by_username(username: str) -> User:
-        user = '';
+    def find_user_by_username(username: str) -> models.User:
+        user = '' #; лишняя точка с запятой
         try:
-            user = User.query.filter_by(name=username).first()
+            user = models.User.query.filter_by(name=username).first()
             return user
         except Exception as e:
-            db.session.rollback()
+            database.session.rollback()
             raise Exception(f"Ошибка поиска пользователя: {str(e)}")

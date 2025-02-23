@@ -1,9 +1,9 @@
 #app.py
 from flask import Flask
 
-from .config import DB_CONFIG
-from .database import db
-from .services import user_crud
+from config import DB_CONFIG
+from db import database
+from services import user_crud
 
 app = Flask(__name__)
 
@@ -17,10 +17,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 def init_db():
     with app.app_context():
-        db.init_app(app)
+        database.init_app(app)
         try:
-            db.session.execute('SELECT 1')
-            db.session.commit()
+            database.session.execute('SELECT 1')
+            database.session.commit()
             print("Подключение успешно!")
         except Exception as e:
             print(f"Ошибка подключения: {str(e)}")
