@@ -23,7 +23,7 @@ button{
 	border: none;
 	background-color: transparent;
 }
-body p, body h1, body h2, div{
+body p, body h1, body h2, div, option{
 	font-family: Montserrat, sans-serif;
 }
 input{

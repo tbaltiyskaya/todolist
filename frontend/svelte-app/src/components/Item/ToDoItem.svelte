@@ -1,26 +1,31 @@
 <script>
-    const titleText = 'список пакупок';
     import ChildItem from "./childItem.svelte";
     import IconButton from "../iconButton.svelte";
-    import EditItem from "./editItem.svelte";
-    import Date from "../CommonCalendar/Date.svelte";
+    import EditItem from "./EditItem.svelte";
+    const titleText = 'список пакупок';
     const editIcon = '/icons/edit_icon.svg';
     const toBottomIcon = '/icons/tobottom_icon.svg';
     const torightIcon = '/icons/toright_icon.svg';
     const dotsIcon = '/icons/dots_icon.svg';
     let isExpanded = false;
 
+    let editor = false;
     function toggle() {
         isExpanded = !isExpanded;
     }
     function editBlock(){
+        editor = !editor;
     }
+    
 
     let header = 'Редактировать';
     let name = 'Foo';
     let desc = 'Nooooo'
     let date;
-    let time = 'Choose time';
+    let hours = '2';
+    let minutes = '22';
+    let priority = 'middle';
+    let user = 1;
 </script>
 
 <style>
@@ -92,7 +97,19 @@
     }
 </style>
 
-<EditItem {header} {name} {desc} {date}></EditItem>
+{#if editor}
+<EditItem 
+header={header} 
+name={name} 
+desc={desc} 
+date={date} 
+hours={hours} 
+minutes ={minutes}
+priority = {priority}
+user = {user}>
+</EditItem>
+{/if}
+
 <div class="contItem">
     <div class="status">
         <div class='time'><p>17:40-18:30</p></div>
@@ -112,6 +129,6 @@
         </ul>
     </div>
     <div class="edit">
-        <IconButton icon={editIcon}></IconButton>
+        <IconButton icon={editIcon} onClick={editBlock}></IconButton>
     </div>
 </div>

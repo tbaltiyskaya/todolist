@@ -1,6 +1,14 @@
 <script>
     export let icon;
     export let onClick;
+    export let disabled = false;
+
+    function handleClick() {
+        if (!disabled && onClick) {
+            onClick();
+        }
+    }
+
 </script>
 <style>
     .icon-btn{
@@ -23,7 +31,9 @@
 </style>
 
 <div>
-    <button class="icon-btn" on:click|preventDefault={onClick}>
+    <button class="icon-btn"
+    on:click={handleClick}
+    disabled={disabled}>
         <img src={icon} alt="icon"> 
     </button>
 </div>

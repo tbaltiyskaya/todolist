@@ -74,7 +74,7 @@
     .calendar{
         width: 360px;
         height: 360px;
-        padding: 20px 10px;
+        padding: 10px 10px;
         box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
         background-color: #eceff1;
         border-radius: 8px;

@@ -63,7 +63,6 @@ const SettingsIcon = 'icons/settings_icon.svg';
 <div class="usermenu">
     <div class="info">
         <div class="icon">
-
         </div>
         <div class="username">
             <p>{Username}</p>
