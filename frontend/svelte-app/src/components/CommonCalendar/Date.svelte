@@ -2,29 +2,21 @@
     import { createEventDispatcher } from 'svelte';
     export let date;
     export let selectedDate;
+    export let type;
 
-    const buttonDispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher();
 
     let day = date.getDate();
 
-    function ButtonClick(){
-        buttonDispatch('dateClick', date);
-        console.log(selectedDate);
+    function SendDate(){
+        const data = {'selected_date': date};
+        dispatch('SendDate', data);
     }
     
 
 </script>
 <style>
-    .date{
-        border-radius: 4px;
-        margin: 8px 8px;
-        width: 26px;
-        height: 26px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    button{
+    .day{
         width: 100%;
         height: 100%; 
         border-radius: 50%;
@@ -33,14 +25,19 @@
         align-items: center;
         background-color: transparent;
     }
-    button.clicked{
-        background-color: aqua;
+    .day:hover{
+        background-color: #ccdbfd;
     }
-    .date > button p{
-        color: #000000;
+    .day.active{
+        background-color: #c1d3fe;
     }
 </style>
 
-<div class="date">
-    <button class:clicked={date === selectedDate} on:click={ButtonClick}><p>{day}</p></button>
-</div>
+
+<button class="day {date.getTime() === selectedDate.getTime() ? 'active' : ''}" on:click={SendDate}>
+    {#if type === 'mini'}
+    <p class="p-task-desc">{day}</p>
+    {:else}
+    <p class="p-classic">{day}</p>
+    {/if}
+</button>

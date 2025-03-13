@@ -5,10 +5,8 @@ html, body {
 }
 
 body {
-	background-color: rgb(77, 67, 67);
 	margin: 0;
-	padding: 8px;
-	box-sizing: border-box;
+	padding: 0;
 
 }
 body > div{
@@ -22,11 +20,55 @@ button{
 	cursor: pointer;
 	border: none;
 	background-color: transparent;
+	display: flex; justify-content: center; align-items: center;
 }
-body p, body h1, body h2, div, option{
+body *{
 	font-family: Montserrat, sans-serif;
 }
 input{
-	height: 30px;
+	height: 24px;
 }
+p{
+	font-family: Montserrat, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+.header{
+	margin: 10px 4px;
+	display: flex; justify-content: center; align-items: center;
+	width: fit-content; height: 30px;
+}
+.header p{
+	font-size: 14px;
+	font-weight: 400;
+	text-align: justify;
+}
+.p-username{
+	font-size: 12px; font-weight: 400;
+}
+.p-useremail{
+	font-size: 10px; font-weight: 300;
+}
+.p-classic{font-size: 14px; font-weight: 400;}
 
+.p-bold{font-size: 14px; font-weight: 500;}
+
+.p-header{font-size: 18px; font-weight: 500;}
+
+.p-light{font-size: 12px; font-weight: 300; text-align:justify;}
+.p-light.active{font-size: 12px; font-weight: 400; text-align:justify;}
+
+.p-task-name{
+	margin: 4px;
+	font-size: 12px; font-weight: 500; text-align:justify;
+}
+.p-task-desc{
+	margin: 4px;
+	font-size: 12px; font-weight: 400; text-align:justify;
+}
+.p-task-small{
+	font-size: 10px;
+    font-weight: 400;
+	justify-content: start;
+	margin: 4px;
+}
